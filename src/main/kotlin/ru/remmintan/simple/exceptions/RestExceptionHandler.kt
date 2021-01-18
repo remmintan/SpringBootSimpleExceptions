@@ -21,7 +21,7 @@ class RestExceptionHandler {
     @Value("${'$'}{simple.exceptions.messages.default:No message}")
     private lateinit var defaultMessage: String
 
-    @Value("${'$'}{simple.exceptions.messages.global-handler}")
+    @Value("${'$'}{simple.exceptions.messages.global-handler:An error has occurred}")
     private lateinit var globalHandlerMessage: String
 
     @ExceptionHandler(ApiException::class)
