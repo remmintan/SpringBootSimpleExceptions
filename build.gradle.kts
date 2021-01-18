@@ -20,7 +20,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("io.github.microutils:kotlin-logging:1.12.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-validation")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.+")
 }
 
 tasks.withType<KotlinCompile> {
