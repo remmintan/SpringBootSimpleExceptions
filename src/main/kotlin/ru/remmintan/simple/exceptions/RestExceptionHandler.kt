@@ -40,6 +40,7 @@ class RestExceptionHandler {
     }
 
     @ExceptionHandler(Exception::class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     fun handleAll(ex: Exception): ErrorDto {
         logger.error(ex) {"Unhandled exception in application!"}
