@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.validation.BindException
 import org.springframework.validation.BindingResult
+import org.springframework.web.HttpMediaTypeNotSupportedException
+import org.springframework.web.HttpRequestMethodNotSupportedException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -57,6 +59,29 @@ class RestExceptionHandler {
     @ResponseBody
     fun handleMethodArgumentNotValid(ex: MethodArgumentNotValidException): ErrorDto
         = parseBindingResult(ex.bindingResult)
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException::class)
+    fun handleMethodNotAllowedException(ex: HttpRequestMethodNotSupportedException): ResponseEntity<ErrorDto> {
+        val allowedMethods = ex.supportedMethods?.toList()?.joinToString(", ") ?: ""
+        val errorMessage = "Method ${ex.method} not allowed. Allowed methods: $allowedMethods."
+
+        val dto = ErrorDto(errorMessage)
+        var responseEntity = ResponseEntity
+            .status(HttpStatus.METHOD_NOT_ALLOWED);
+
+        val allowedHeaders = ex.supportedHttpMethods?.toTypedArray()
+        if(allowedHeaders != null) {
+            responseEntity = responseEntity.allow(*allowedHeaders)
+        }
+
+        return responseEntity.body(dto)
+    }
+
+    @ExceptionHandler(HttpMediaTypeNotSupportedException::class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+    fun handleUnsupportedMediaTypeException(ex: HttpMediaTypeNotSupportedException): ErrorDto =
+        ErrorDto(ex.localizedMessage)
 
     private fun parseBindingResult(br: BindingResult): ErrorDto {
         val errors = br.allErrors.map {it.defaultMessage}.joinToString("\n")
