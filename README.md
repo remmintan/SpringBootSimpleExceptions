@@ -19,7 +19,7 @@ Now all your exceptions are handled and displayed to user properly, including co
 }
 ```
 ## Motivation
-Error handling is strainforward feature, which any API needs and should be configured out of the box, but in Spring it's hard thing to do. We even have several guides on the internet [how to](https://www.baeldung.com/exception-handling-for-rest-with-spring) [do it](https://reflectoring.io/spring-boot-exception-handling/).
+Error handling is straightforward feature, which any API needs and should be configured out of the box, but in Spring it's hard thing to do. We even have several guides on the internet [how to](https://www.baeldung.com/exception-handling-for-rest-with-spring) [do it](https://reflectoring.io/spring-boot-exception-handling/).
 Main goal of this lib is to eliminate this hardness, keep SpringBoot's REST exception handling powerfull but simple. Giving users more time on writing business logic, not configuring boilerplate.
 ## Getting Started
 Add lib annotation to your application.
