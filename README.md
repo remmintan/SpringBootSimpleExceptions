@@ -83,11 +83,17 @@ dependencies {
 ### Http Exceptions
 Library has several preconfigured exceptions, which help throwing errors with standart error status codes. Message, supplied to exception's constructor converted to simple JSON containing only one field "message". This JSON then returns to client.
 All exceptions can be found in package `ru.remmintan.simple.exceptions.exceptions`.
+
 **400 Bad Request** - `throw BadRequestException("Example message")`
+
 **401 Unauthorized** - `throw UnauthorizedException("Example message")`
+
 **403 Forbidden** - `throw ForbiddenException("Example message")`
+
 **404 Bad Request** - `throw NotFoundException("Example message")`
+
 **500 Internal Server Error** - `throw InternalServerException("Example message")`
+
 ### Model Validation
 DTO and constraints validation are also covered by this library. When you add validation annotations to any model and validation fails, all the validation errors return to client within `message` field. See example below.
 ```
