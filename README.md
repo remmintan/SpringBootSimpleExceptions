@@ -1,5 +1,6 @@
 # SpringBootSimpleExceptions [![](https://jitpack.io/v/SpringSimpleUtils/SpringBootSimpleExceptions.svg)](https://jitpack.io/#SpringSimpleUtils/SpringBootSimpleExceptions) [![EXAMPLE](https://github.com/SpringSimpleUtils/SpringBootSimpleExceptions/actions/workflows/gradle.yml/badge.svg)](https://github.com/SpringSimpleUtils/SpringBootSimpleExceptions/actions/workflows/gradle.yml)
 Tiny lib which eliminates SpringBoot REST error handling boilerplate. Making errors "exception based".
+
 **Step 1. Add sngle annotation to your application**
 ```
 @EnableSimpleExceptions
